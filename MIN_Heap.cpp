@@ -49,7 +49,47 @@ using namespace std; // so i dont have to use std:: everytime
             else break; // no more vialations = everything is correct
             }
     }
+//////////
 
+// insert a value into the heap
+    void insertHeap(vector<int>& heap, int val)
+    {
+        heap.push_back(val); // add value at the end
+        heapifyUp(heap, heap.size() -1); //restore heap upward
+    }
+
+// remove the minimum value
+    void removeMin(vector<int>& heap)
+    {
+        if (heap.empty()) return;
+
+        heap[0] = heap.back(); // move last element to root
+        heap.pop_back(); // remove last element
+        heapifyDown(heap, 0); // restore heap downward
+    }
+
+//print the heap as an array
+    void printHeap(const vector<int>& heap)
+    {
+        for (int v : heap) cout << v<<" ";
+        cout << endl;
+    }
+
+// the main program
+    int main()
+    {
+        vector<int> heap = {10,15,20,17,25,30}; // initial min heap
+        cout << "Initial heap: ";
+        printHeap(heap);
+
+        cout<< "After insertion 5:\n";
+        insertHeap(heap, 5); // insert new smallest element
+        printHeap(heap);
+
+        cout<<"After removing min 5:\n";
+        removeMin(heap); // remove top element
+        printHeap(heap);
+    }
 
 
 
